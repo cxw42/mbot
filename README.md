@@ -17,6 +17,8 @@ You should have a symlink `/dev/mbot24g` pointing to the adapter.
 
 ## A test
 
+### 2.4G, 57600
+
 Outputting only 0x49 (`I`) at 57600 over 2.4G gave results:
 ```
 ...
@@ -26,11 +28,20 @@ b'\x1d\x98\x86\x98\x86\x98\x86\x98\x86\x98\x86\x98\x86\x98\x86\x98\x86\x98\x86\x
 ...
 ```
 
-### Same over wired serial
+### Same over wired serial, 9600
 ```
 $ stty -F /dev/ttyUSB0 9600 raw
 $ cat /dev/ttyUSB0
 IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII...
+```
+
+### 2.4G, 115200
+```
+...
+b'\x1dIIIIIIIIIIIIIIIIIIIIIIIIIIII'
+b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+b'\x1dIIIIIIIIIIIIIIIIIIIIIIIIIIII'
+...
 ```
 
 ## Refs

@@ -3,6 +3,7 @@
 # https://trezor.github.io/cython-hidapi/examples.html#finding-devices
 import hidapi
 import time
+import sys
 
 
 def find_device():
@@ -31,7 +32,6 @@ try:
 
     h = hidapi.Device(info=device, blocking=True)
 
-    print(dir(h))
     print("Manufacturer: %s" % h.get_manufacturer_string())
     print("Product: %s" % h.get_product_string())
     print("Serial No: %s" % h.get_serial_number_string())
@@ -47,12 +47,14 @@ try:
     print("Read the data")
     try:
         while True:
-            d = h.read(64)
+            count = int.from_bytes(h.read(1), sys.byteorder)
+            if count == 0:
+                time.sleep(0.05)
+                continue
+
+            d = h.read(count)
             if d:
                 print(d)
-            err = h._get_last_error_string()
-            if err:
-                print(f"Error: {err}")
     except KeyboardInterrupt:
         pass
 

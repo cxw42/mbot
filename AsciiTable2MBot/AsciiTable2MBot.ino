@@ -20,7 +20,7 @@
 */
 
 // define for USB; comment out for 2.4GHz
-#define TTYUSB
+//#define TTYUSB
 
 void setup() {
 #ifdef TTYUSB
@@ -30,7 +30,7 @@ void setup() {
     ; // wait for serial port to connect. Needed for native USB port only
   }
 #else
-  Serial.begin(57600);
+  Serial.begin(115200);
 #endif
 }
 
