@@ -44,6 +44,17 @@ b'\x1dIIIIIIIIIIIIIIIIIIIIIIIIIIII'
 ...
 ```
 
+### 2.4G, 115200, outputting ASCIITable text
+
+```
+...
+b'\x1d1101\r\n~, dec: 126,5, oct: 45'
+b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+b'\x1d 39, oct: 71, bin:t: 122, bi'
+b'\x1d dec: 89, hex: 59, oct: 153,'
+...
+```
+
 ## Refs
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
 - <http://docs.makeblock.com/diy-platform/en/electronic-modules/main-control-boards/images/mcore_Mcore.png>
