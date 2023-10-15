@@ -4,25 +4,25 @@
 import hidapi
 import time
 
-device=None
-for device in hidapi.enumerate():
-    #print(device)
-    #dir(device)
-    #keys = []# list(device_dict.keys())
-    #keys.sort()
-    #for key in keys:
-    #    print("%s : %s" % (key, device_dict[key]))
+def find_device():
+    for device in hidapi.enumerate():
+        #print(device)
+        #dir(device)
+        #keys = []# list(device_dict.keys())
+        #keys.sort()
+        #for key in keys:
+        #    print("%s : %s" % (key, device_dict[key]))
 
-    print(f'path: {device.path}')
-    print(f'vendor: {device.vendor_id:04x}')
-    print(f'product: {device.product_id:04x}')
-    print()
-    if device.vendor_id==0x0416:
-        break
+        print(f'path: {device.path}')
+        print(f'vendor: {device.vendor_id:04x}')
+        print(f'product: {device.product_id:04x}')
+        print()
+        if device.vendor_id==0x0416:
+            return device
 
-if device is None:
-    print("No device")
-    sys.exit(0)
+    raise Exception("No device")
+
+device = find_device()
 
 try:
     print("Opening the device")
