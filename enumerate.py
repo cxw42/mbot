@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Modified from
 # https://trezor.github.io/cython-hidapi/examples.html#finding-devices
 import hidapi
@@ -26,37 +27,40 @@ if device is None:
 try:
     print("Opening the device")
 
-    h = hidapi.Device(info=device, blocking=False)
+    h = hidapi.Device(info=device, blocking=True)
 
+    print(dir(h))
     print("Manufacturer: %s" % h.get_manufacturer_string())
     print("Product: %s" % h.get_product_string())
     print("Serial No: %s" % h.get_serial_number_string())
 
-    # enable non-blocking mode
-    #h.set_nonblocking(1)
-
-    # write some data to the device
-    print("Write the data")
-    h.write(bytes([0, 63, 35, 35] + [0] * 61 + [0x0a]))
+    ## write some data to the device
+    #print("Write the data")
+    #h.write(bytes([0, 63, 35, 35] + [0] * 61 + [0x0a]))
 
     # wait
     #time.sleep(0.05)
 
     # read back the answer
     print("Read the data")
-    while True:
-        d = h.read(64)
-        if d:
-            print(d)
-        else:
-            time.sleep(1)
+    try:
+        while True:
+            d = h.read(64)
+            if d:
+                print(d)
+            err = h._get_last_error_string()
+            if(err):
+                print(f"Error: {err}")
+    except KeyboardInterrupt:
+        pass
 
     print("Closing the device")
     h.close()
 
 except IOError as ex:
     print(ex)
-    print("You probably don't have the hard-coded device.")
+    print("Try with `sudo` if you aren't root.")
+    print("Otherwise, you probably don't have the hard-coded device.")
     print("Update the h.open() line in this script with the one")
     print("from the enumeration list output above and try again.")
 

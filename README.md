@@ -2,7 +2,9 @@
 
 Dependencies: `sudo apt install python3-hidapi libhidapi-dev`
 
-`sudo python3 enumerate.py` sees the device but only gets 0s as of now.
+- Set up the mbot to output serial data at 57600
+- Run `sudo python3 enumerate.py`.  It sees the device and gets data,
+  but the data is corrupted.
 
 Refs:
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
