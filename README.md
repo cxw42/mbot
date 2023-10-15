@@ -143,6 +143,18 @@ Sync up
 ...
 ```
 
+### Trying enumerate.py change: always read fixed-sized buffer
+
+```
+...
+b'\x1dwxyz{|}~!"#$%&\'()*cdefghijklm'
+b'wxyz{|}~!"#$%&\'()*cdefghijklm'
+b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+b''
+b'\x1dnopqrstuvwxyz{|}~![\\]^_`abcde'
+...
+```
+
 ## Refs
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
 - <http://docs.makeblock.com/diy-platform/en/electronic-modules/main-control-boards/images/mcore_Mcore.png>

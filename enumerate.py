@@ -60,10 +60,13 @@ try:
     print("Read the data")
     try:
         while True:
-            sync()
-            d = h.read(0x1D)
+            #sync()
+            #d = h.read(0x1D)
+            d = h.read(65)
+            print(d)
             if d:
-                print(d)
+                count = d[0]
+                print(d[1:count+1])
     except KeyboardInterrupt:
         pass
 
