@@ -32,18 +32,24 @@ void setup() {
 #else
   Serial.begin(57600);
 #endif
-
-  // prints title with ending line break
-  Serial.println("ASCII Table ~ Character Map");
 }
 
 // first visible ASCIIcharacter '!' is number 33:
-int thisByte = 33;
+#define FIRST_BYTE (33)
+ 
+// character '~' or 126
+#define LAST_BYTE (126) 
+ 
+int thisByte = FIRST_BYTE;
 // you can also write ASCII characters in single quotes.
 // for example, '!' is the same as 33, so you could also use this:
 // int thisByte = '!';
 
 void loop() {
+  if(thisByte == FIRST_BYTE) {
+    // prints title with ending line break
+    Serial.println("ASCII Table ~ Character Map");
+  }
   // prints value unaltered, i.e. the raw binary version of the byte.
   // The Serial Monitor interprets all bytes as ASCII, so 33, the first number,
   // will show up as '!'
@@ -73,12 +79,10 @@ void loop() {
   Serial.println(thisByte, BIN);
 
   // if printed last visible character '~' or 126, stop:
-  if (thisByte == 126) {    // you could also use if (thisByte == '~') {
-    // This loop loops forever and does nothing
-    while (true) {
-      continue;
-    }
+  if (thisByte == LAST_BYTE) {    // you could also use if (thisByte == '~') {
+    thisByte = FIRST_BYTE;
+  } else {
+    // go on to the next character
+    thisByte++;
   }
-  // go on to the next character
-  thisByte++;
 }
