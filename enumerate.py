@@ -47,10 +47,11 @@ try:
     print("Read the data")
     try:
         while True:
-            count = int.from_bytes(h.read(1), sys.byteorder)
-            if count == 0:
-                time.sleep(0.05)
-                continue
+            # count = int.from_bytes(h.read(1), sys.byteorder)
+            # if count == 0:
+            #    time.sleep(0.05)
+            #    continue
+            count = 64
 
             d = h.read(count)
             if d:

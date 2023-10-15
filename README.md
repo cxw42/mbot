@@ -96,6 +96,47 @@ b'\x1d=>?@ABCDEFGHIJKLMNwxyz{|}~!"'
 ...
 ```
 
+### Same, but back to 8N1
+
+```
+...
+b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+b"\x1d0123456789:;<=>?@A'()*+,-./0"
+b'\x1d56789:;<=>?@ABCDEF*+,-./0123'
+b'\x1d56789:;<=>?@ABCDEF/012345678'
+...
+```
+
+### enumerate.py change --- back to just reading all bytes
+
+```
+...
+b'\x1dNOPQRSTUVWXYZ[\\]^_CDEFGHIJKLM'
+b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+b'\x1dNOPQRSTUVWXYZ[\\]^_EFGHIJKLMNO'
+b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+b'\x1dPQRSTUVWXYZ[\\]^_`aHIJKLMNOPQR'
+b'\x1dSTUVWXYZ[\\]^_`abcdHIJKLMNOPQR'
+...
+```
+
+### Back to 8N2
+
+```
+...
+b'\x1dabcdefghijklmnopqr<=>?@ABCDEF'
+b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+b'\x1dGHIJKLMNOPQRSTUVWX56789:;<=>?'
+...
+```
+
+Looking pretty close!
+
+
+
+
+
+
 ## Refs
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
 - <http://docs.makeblock.com/diy-platform/en/electronic-modules/main-control-boards/images/mcore_Mcore.png>
