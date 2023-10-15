@@ -43,35 +43,22 @@ try:
     # wait
     # time.sleep(0.05)
 
-    def sync():
-        # It always seems to output 0x1d as a length byte.  Since we're only
-        # sending ASCII, use that as a sync byte.
-        print("Sync up")
-        while True:
-            print(".", end="")
-            sys.stdout.flush()
-            byte = h.read(1)
-            if not byte:
-                time.sleep(0.05)
-            elif byte == b"\x1d":
-                break
-
     # read back the answer
     print("Read the data")
     try:
         while True:
-            #sync()
-            #d = h.read(0x1D)
             d = h.read(65)
-            #print(d)
             if d:
                 count = d[0]
-                print(d[1:count+1])
+                if not count:
+                    # Empty packet
+                    continue
+                print(d[1 : count + 1])
 
                 # Print extra bytes we got if there are any nonzeros.
-                left = d[count+1:]
+                left = d[count + 1 :]
                 if any(b for b in left):
-                    print('Left:', left)
+                    print("Left:", left)
     except KeyboardInterrupt:
         pass
 
