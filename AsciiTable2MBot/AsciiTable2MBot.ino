@@ -20,7 +20,7 @@
 */
 
 // define for USB; comment out for 2.4GHz
-//#define TTYUSB
+#define TTYUSB
 
 void setup() {
 #ifdef TTYUSB
