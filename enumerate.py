@@ -29,6 +29,7 @@ try:
 
     h = hidapi.Device(info=device, blocking=True)
 
+    print(dir(h))
     print("Manufacturer: %s" % h.get_manufacturer_string())
     print("Product: %s" % h.get_product_string())
     print("Serial No: %s" % h.get_serial_number_string())
@@ -47,6 +48,9 @@ try:
             d = h.read(64)
             if d:
                 print(d)
+            err = h._get_last_error_string()
+            if(err):
+                print(f"Error: {err}")
     except KeyboardInterrupt:
         pass
 
