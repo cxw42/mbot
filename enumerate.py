@@ -63,10 +63,11 @@ try:
             #sync()
             #d = h.read(0x1D)
             d = h.read(65)
-            print(d)
+            #print(d)
             if d:
                 count = d[0]
                 print(d[1:count+1])
+                print('Left:', d[count+1:])
     except KeyboardInterrupt:
         pass
 
