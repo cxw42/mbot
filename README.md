@@ -163,6 +163,23 @@ Left: b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00
 Left: b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
 ```
 
+### Slowing down the Arduino's character rate even more!
+
+Delay 9us -> 20us
+
+```
+...
+b'tuvwxyz{|}~!"#$%&\'PQRSTUVWXYZ'
+b'[\\]^_`abcdefghijkl./012345678'
+b'9:;<=>?@ABCDEFGHIJjklmnopqrst'
+b'uvwxyz{|}~!"#$%&\'(@ABCDEFGHIJ'
+b"KLMNOPQRSTUVWXYZ[\\'()*+,-./01"
+b'23456789:;<=>?@ABC~!"#$%&\'()*'
+b'+,-./0123456789:;<defghijklmn'
+b'opqrstuvwxyz{|}~!"vwxyz{|}~!"'
+...
+```
+
 ## Refs
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
 - <http://docs.makeblock.com/diy-platform/en/electronic-modules/main-control-boards/images/mcore_Mcore.png>

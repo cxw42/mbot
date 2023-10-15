@@ -45,12 +45,12 @@ int thisByte = FIRST_BYTE;
 // for example, '!' is the same as 33, so you could also use this:
 // int thisByte = '!';
 
-// 115200 is ~8.7us per byte.  Cut the rate in half to give the wireless
+// 115200 is ~8.7us per byte.  Cut the rate to give the wireless
 // adapter time to keep up.
 
 void swrite(int i)
 {
-  delayMicroseconds(9);
+  delayMicroseconds(20);
   Serial.write(i);
 }
 

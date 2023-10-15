@@ -67,7 +67,11 @@ try:
             if d:
                 count = d[0]
                 print(d[1:count+1])
-                print('Left:', d[count+1:])
+
+                # Print extra bytes we got if there are any nonzeros.
+                left = d[count+1:]
+                if any(b for b in left):
+                    print('Left:', left)
     except KeyboardInterrupt:
         pass
 
