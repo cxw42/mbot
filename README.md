@@ -55,6 +55,37 @@ b'\x1d dec: 89, hex: 59, oct: 153,'
 ...
 ```
 
+### 2.4G, 115200 **8N2**, outputting ASCIITable text
+
+```
+...
+b'\x1d 40, oct: 100, binB, dec: 66'
+b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+b'\x1ddec: 70, hex: 46, in: 100011'
+b'\x1d1001\r\nJ, dec: 74, t: 113, bi'
+...
+```
+
+Definitely better.  Ted's comment
+
+> The mBot's serial interface speed of 115200 is faster than the RF
+> transmission. So, if sending bigger blocks of data, make sure to put in some
+> delay statements, to avoid loosing data because of buffer overflows.
+
+may be the issue.
+
+### Same, but with hackish delay between chars
+
+```
+...
+b'\x1d, oct: , bin: \x10,, \xb8\x06\x07\x07\xb8\xb8\xb8, b'
+b'\x1dbin: \xb8\xb8\xb8\xb8\xb8!\xb8\xb8\x06\x07\x07\xb8\xb8\x06\x07\x07\xb8\xb8\xb8, bi'
+b'\x1d\xb8\xb8\x06\x07\x07\xb8\xb8\xb8\x100, dec: \xb8\xb8\x06\x07\x07\xb8\xb8\xb8\x101,'
+b'\x1d hex: \xb8\xb8\xb8\x06\x07\x07\xb8\xb8\xb8, o\x07\xb8\xb8\xb8, oct:'
+b'\x1dec: \x06\x07\x07\xb8\xb8\xb8, hex: \x06\xb8, oct: \x07\x07'
+...
+```
+
 ## Refs
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
 - <http://docs.makeblock.com/diy-platform/en/electronic-modules/main-control-boards/images/mcore_Mcore.png>
