@@ -68,16 +68,19 @@ void sprintln(char *s, int base=DEC)
 }
 
 void loop() {
-
+#if 0
   if(thisByte == FIRST_BYTE) {
     // prints title with ending line break
     sprintln("ASCII Table ~ Character Map");
   }
+#endif
+
   // prints value unaltered, i.e. the raw binary version of the byte.
   // The Serial Monitor interprets all bytes as ASCII, so 33, the first number,
   // will show up as '!'
   swrite(thisByte);
 
+#if 0
   sprint(", dec: ");
   // prints value as string as an ASCII-encoded decimal (base 10).
   // Decimal is the default format for Serial.print() and Serial.println(),
@@ -100,6 +103,7 @@ void loop() {
   sprint(", bin: ");
   // prints value as string in binary (base 2) also prints ending line break:
   sprintln(thisByte, BIN);
+#endif // 0
 
   // if printed last visible character '~' or 126, stop:
   if (thisByte == LAST_BYTE) {    // you could also use if (thisByte == '~') {

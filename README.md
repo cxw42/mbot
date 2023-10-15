@@ -86,6 +86,16 @@ b'\x1dec: \x06\x07\x07\xb8\xb8\xb8, hex: \x06\xb8, oct: \x07\x07'
 ...
 ```
 
+### Same, but just print the chars
+
+```
+...
+'\x1d123456789:;<=>?@ABABCDEFGHIJ'
+b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+b'\x1d=>?@ABCDEFGHIJKLMNwxyz{|}~!"'
+...
+```
+
 ## Refs
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
 - <http://docs.makeblock.com/diy-platform/en/electronic-modules/main-control-boards/images/mcore_Mcore.png>
