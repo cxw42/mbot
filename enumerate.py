@@ -4,23 +4,25 @@
 import hidapi
 import time
 
+
 def find_device():
     for device in hidapi.enumerate():
-        #print(device)
-        #dir(device)
-        #keys = []# list(device_dict.keys())
-        #keys.sort()
-        #for key in keys:
+        # print(device)
+        # dir(device)
+        # keys = []# list(device_dict.keys())
+        # keys.sort()
+        # for key in keys:
         #    print("%s : %s" % (key, device_dict[key]))
 
-        print(f'path: {device.path}')
-        print(f'vendor: {device.vendor_id:04x}')
-        print(f'product: {device.product_id:04x}')
+        print(f"path: {device.path}")
+        print(f"vendor: {device.vendor_id:04x}")
+        print(f"product: {device.product_id:04x}")
         print()
-        if device.vendor_id==0x0416:
+        if device.vendor_id == 0x0416:
             return device
 
     raise Exception("No device")
+
 
 device = find_device()
 
@@ -35,11 +37,11 @@ try:
     print("Serial No: %s" % h.get_serial_number_string())
 
     ## write some data to the device
-    #print("Write the data")
-    #h.write(bytes([0, 63, 35, 35] + [0] * 61 + [0x0a]))
+    # print("Write the data")
+    # h.write(bytes([0, 63, 35, 35] + [0] * 61 + [0x0a]))
 
     # wait
-    #time.sleep(0.05)
+    # time.sleep(0.05)
 
     # read back the answer
     print("Read the data")
@@ -49,7 +51,7 @@ try:
             if d:
                 print(d)
             err = h._get_last_error_string()
-            if(err):
+            if err:
                 print(f"Error: {err}")
     except KeyboardInterrupt:
         pass

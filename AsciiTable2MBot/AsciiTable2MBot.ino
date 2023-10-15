@@ -46,6 +46,10 @@ int thisByte = FIRST_BYTE;
 // int thisByte = '!';
 
 void loop() {
+  Serial.write(0x49);
+  Serial.flush();
+  return;
+  
   if(thisByte == FIRST_BYTE) {
     // prints title with ending line break
     Serial.println("ASCII Table ~ Character Map");
