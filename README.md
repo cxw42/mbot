@@ -132,10 +132,16 @@ b'\x1dGHIJKLMNOPQRSTUVWX56789:;<=>?'
 
 Looking pretty close!
 
+### trying some changes to enumerate.py
 
-
-
-
+```
+...
+Sync up
+.b'\x1dXYZ[\\]^_`abcdefghiDEFGHIJKLM'
+Sync up
+.b'\x1dGHIJKLMNOPQRSTUVWX456789:;<='
+...
+```
 
 ## Refs
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>

@@ -43,17 +43,25 @@ try:
     # wait
     # time.sleep(0.05)
 
+    def sync():
+        # It always seems to output 0x1d as a length byte.  Since we're only
+        # sending ASCII, use that as a sync byte.
+        print("Sync up")
+        while True:
+            print(".", end="")
+            sys.stdout.flush()
+            byte = h.read(1)
+            if not byte:
+                time.sleep(0.05)
+            elif byte == b"\x1d":
+                break
+
     # read back the answer
     print("Read the data")
     try:
         while True:
-            # count = int.from_bytes(h.read(1), sys.byteorder)
-            # if count == 0:
-            #    time.sleep(0.05)
-            #    continue
-            count = 64
-
-            d = h.read(count)
+            sync()
+            d = h.read(0x1D)
             if d:
                 print(d)
     except KeyboardInterrupt:
