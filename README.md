@@ -6,6 +6,15 @@ Dependencies: `sudo apt install python3-hidapi libhidapi-dev`
 - Run `sudo python3 enumerate.py`.  It sees the device and gets data,
   but the data is corrupted.
 
+## udev
+
+1. Make sure the 2.4G adapter is unplugged
+2. `sudo cp 99-Makeblock2.4G.rules /etc/udev/rules.d/`
+3. `sudo udevadm control --reload-rules && sudo udevadm trigger`
+4. Plug the 2.4G adapter back in.
+
+You should have a symlink `/dev/mbot24g` pointing to the adapter.
+
 ## A test
 
 Outputting only 0x49 (`I`) at 57600 over 2.4G gave results:

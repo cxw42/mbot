@@ -1,0 +1,3 @@
+# From https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial
+#
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="0416", ATTRS{idProduct}=="ffff", MODE:="0666", SYMLINK+="mbot24g"
