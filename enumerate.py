@@ -45,6 +45,13 @@ def read_and_print(h):
             print("Left:", left)
 
 
+def write_str(h, s):
+    data = s.encode("utf-8")
+    data = bytes([len(data)]) + data
+    print(f"Writing {data!r}")
+    h.write(data)
+
+
 try:
     print("Opening the device")
 
@@ -57,10 +64,7 @@ try:
     while True:
         try:
             # write some data to the device
-            print("Write the data")
-            # for i in range(10):
-            #     h.write(bytes([0, 4, 35, 35] + [0x0d] + [0x0a]))
-            h.write(bytes([6]) + "Hello\n".encode('utf-8'))
+            write_str(h, "Hello, world!\n")
 
             # wait
             time.sleep(0.05)

@@ -303,6 +303,35 @@ Read the data
 b'=(G@1e\x13\x1b\x1b\x07W\x02,2s\nLIYello\n>=L^\x05'
 ```
 
+### Trying with a function
+
+Almost there!
+
+```
+Serial No: Љ
+Writing b'\x0eHello, world!\n'
+Read the data
+Writing b'\x0eHello, world!\n'
+Read the data
+b'=orld!Hello, world!Hello, wor'
+Writing b'\x0eHello, world!\n'
+Read the data
+b'ld!Hello, world!Hello, world!'
+Writing b'\x0eHello, world!\n'
+Read the data
+b'Hello, \n>=world!\n>'
+Writing b'\x0eHello, world!\n'
+Read the data
+b'=Hello, world!\n>'
+Writing b'\x0eHello, world!\n'
+Read the data
+Writing b'\x0eHello, world!\n'
+Read the data
+b'=Hello, world!\n>'
+```
+
+It is a bit wonky at first but then settles down.
+
 ## Refs
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
 - <http://docs.makeblock.com/diy-platform/en/electronic-modules/main-control-boards/images/mcore_Mcore.png>
