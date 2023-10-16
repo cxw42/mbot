@@ -246,6 +246,10 @@ but got infinite spam.
 I saw the prompt but no other output.  But at least it didn't spam me
 with prompts!
 
+### Trying serialEvent sample
+
+Same issue --- newlines seem to not get consumed.
+
 ## Refs
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
 - <http://docs.makeblock.com/diy-platform/en/electronic-modules/main-control-boards/images/mcore_Mcore.png>
