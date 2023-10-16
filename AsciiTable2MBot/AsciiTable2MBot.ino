@@ -76,70 +76,45 @@ void setup() {
 
 #define MAXBYTES (64)
 char bytes[MAXBYTES];
+int readBytes = 0;
+bool stringReady = false;
 
-void loop() {
-
-  if(!Serial.available()) {
-    return;
-  }
-  auto got = Serial.readBytesUntil('\n', bytes, MAXBYTES);
-  
-  // Echo if we got data
-  if (got > 0) {
+// Print the buffer and reset it
+void PrintAndReset()
+{
     swrite('=');
-    for(int i=0; i<got; ++i) {
+    for(int i=0; i<readBytes; ++i) {
       swrite(bytes[i]);
     }
 
     swrite('\n');
     swrite('>');
     Serial.flush();
+
+    readBytes = 0;
+    stringReady = false;
+}
+
+void loop() 
+{
+  if(stringReady) {
+    PrintAndReset();
   }
-  return; // XXX
+}
 
-#if 0
-  if(thisByte == FIRST_BYTE) {
-    // prints title with ending line break
-    sprintln("ASCII Table ~ Character Map");
+void serialEvent()
+{
+  while(Serial.available()) {
+    auto ch = Serial.read();
+    if((ch < 0) || (ch == '\n')) {
+      stringReady = true;
+      return;
+    }
+    bytes[readBytes++] = ch & 0x7f;
+    if(readBytes == MAXBYTES) {
+      stringReady = true;
+      return;
+    }
   }
-#endif
 
-  // prints value unaltered, i.e. the raw binary version of the byte.
-  // The Serial Monitor interprets all bytes as ASCII, so 33, the first number,
-  // will show up as '!'
-  swrite(thisByte);
-
-
-#if 0
-  sprint(", dec: ");
-  // prints value as string as an ASCII-encoded decimal (base 10).
-  // Decimal is the default format for Serial.print() and Serial.println(),
-  // so no modifier is needed:
-  sprint(thisByte);
-  // But you can declare the modifier for decimal if you want to.
-  // this also works if you uncomment it:
-
-  // Serial.print(thisByte, DEC);
-
-
-  sprint(", hex: ");
-  // prints value as string in hexadecimal (base 16):
-  sprint(thisByte, HEX);
-
-  sprint(", oct: ");
-  // prints value as string in octal (base 8);
-  sprint(thisByte, OCT);
-
-  sprint(", bin: ");
-  // prints value as string in binary (base 2) also prints ending line break:
-  sprintln(thisByte, BIN);
-#endif // 0
-
-  // if printed last visible character '~' or 126, stop:
-  if (thisByte == LAST_BYTE) {    // you could also use if (thisByte == '~') {
-    thisByte = FIRST_BYTE;
-  } else {
-    // go on to the next character
-    thisByte++;
-  }
 }

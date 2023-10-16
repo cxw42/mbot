@@ -241,6 +241,11 @@ Tried stubbing out serialEventRun() per
 <https://forum.arduino.cc/t/unexpected-input-from-serialeventrun/591470/3>
 but got infinite spam.
 
+### Trying serialEvent
+
+I saw the prompt but no other output.  But at least it didn't spam me
+with prompts!
+
 ## Refs
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
 - <http://docs.makeblock.com/diy-platform/en/electronic-modules/main-control-boards/images/mcore_Mcore.png>
