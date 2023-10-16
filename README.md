@@ -255,6 +255,21 @@ Same issue --- newlines seem to not get consumed.
 I noticed that `readBytes` was syntax-highlighted.  I changed it to
 `bytesRead` and am no longer getting spammed.
 
+### Next
+
+- Also accept `\r` as an end-of-line
+- Use `cu` instead of `cat`+`echo`
+
+```
+$ cu -h -l /dev/ttyUSB0 -s 9600 dir
+Connected.
+>Hello^M=Hello
+              >Hello, world!^M=Hello, world!
+                                            >
+```
+
+!!!
+
 ## Refs
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
 - <http://docs.makeblock.com/diy-platform/en/electronic-modules/main-control-boards/images/mcore_Mcore.png>

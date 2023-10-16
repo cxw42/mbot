@@ -86,7 +86,7 @@ void serialEvent()
 {
   while(Serial.available()) {
     auto ch = Serial.read();
-    if((ch < 0) || (ch == '\n')) {
+    if((ch < 0) || (ch == '\n') || (ch == '\r')) {
       stringReady = true;
       return;
     }
