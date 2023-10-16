@@ -235,6 +235,11 @@ Hello, world!^J^PHello, world!^J^P^PHello, world!^J^P^P^PHello, world!^J^P^P^P^P
 
 ??!!
 
+### Next
+
+Tried stubbing out serialEventRun() per
+<https://forum.arduino.cc/t/unexpected-input-from-serialeventrun/591470/3>
+but got infinite spam.
 
 ## Refs
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>

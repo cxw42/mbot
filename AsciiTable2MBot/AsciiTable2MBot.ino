@@ -19,20 +19,11 @@
   https://www.arduino.cc/en/Tutorial/BuiltInExamples/ASCIITable
 */
 
+// Don't use the system-provided serialEventRun()
+void serialEventRun() {}
+
 // define for USB; comment out for 2.4GHz
 #define TTYUSB
-
-void setup() {
-#ifdef TTYUSB
-  //Initialize serial and wait for port to open:
-  Serial.begin(9600);
-  while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
-  }
-#else
-  Serial.begin(115200, SERIAL_8N2);
-#endif
-}
 
 // first visible ASCIIcharacter '!' is number 33:
 #define FIRST_BYTE (33)
@@ -66,14 +57,31 @@ void sprintln(char *s, int base=DEC)
   sprint(s, base);
   swrite(0x10);
 }
+
+void setup() {
+#ifdef TTYUSB
+  //Initialize serial and wait for port to open:
+  Serial.begin(9600);
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for native USB port only
+  }
+#else
+  Serial.begin(115200, SERIAL_8N2);
+#endif
+
+  Serial.setTimeout(2000);
+  swrite('>');
+  Serial.flush();
+}
+
 #define MAXBYTES (64)
 char bytes[MAXBYTES];
 
 void loop() {
 
-  swrite('>');
-  Serial.flush();
-
+  if(!Serial.available()) {
+    return;
+  }
   auto got = Serial.readBytesUntil('\n', bytes, MAXBYTES);
   
   // Echo if we got data
@@ -84,6 +92,7 @@ void loop() {
     }
 
     swrite('\n');
+    swrite('>');
     Serial.flush();
   }
   return; // XXX
