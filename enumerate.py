@@ -27,24 +27,8 @@ def find_device():
 
 device = find_device()
 
-try:
-    print("Opening the device")
 
-    h = hidapi.Device(info=device, blocking=True)
-
-    print("Manufacturer: %s" % h.get_manufacturer_string())
-    print("Product: %s" % h.get_product_string())
-    print("Serial No: %s" % h.get_serial_number_string())
-
-    # write some data to the device
-    # print("Write the data")
-    # for i in range(10):
-    #     h.write(bytes([0, 4, 35, 35] + [0x0d] + [0x0a]))
-    h.write(bytes([0x0D, 0x0A]))
-
-    # wait
-    time.sleep(0.05)
-
+def read_and_print(h):
     # read back the answer
     print("Read the data")
     try:
@@ -62,7 +46,32 @@ try:
                 if any(b for b in left):
                     print("Left:", left)
     except KeyboardInterrupt:
-        pass
+        return
+
+
+try:
+    print("Opening the device")
+
+    h = hidapi.Device(info=device, blocking=True)
+
+    print("Manufacturer: %s" % h.get_manufacturer_string())
+    print("Product: %s" % h.get_product_string())
+    print("Serial No: %s" % h.get_serial_number_string())
+
+    while True:
+        try:
+            # write some data to the device
+            # print("Write the data")
+            # for i in range(10):
+            #     h.write(bytes([0, 4, 35, 35] + [0x0d] + [0x0a]))
+            h.write(bytes([0x0D, 0x0A]))
+
+            # wait
+            time.sleep(0.05)
+
+            read_and_print(h)
+        except KeyboardInterrupt:
+            pass
 
     print("Closing the device")
     h.close()
