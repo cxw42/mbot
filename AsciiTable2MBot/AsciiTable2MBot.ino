@@ -66,14 +66,19 @@ void sprintln(char *s, int base=DEC)
   sprint(s, base);
   swrite(0x10);
 }
+#define MAXBYTES (64)
 
 void loop() {
-  // Echo a byte if there is one
-  if (Serial.available() > 0) {
-    // read the incoming byte:
-    int incomingByte = Serial.read();
-    sprint("Got: ");
-    swrite(incomingByte);
+  char bytes[MAXBYTES];
+
+  int got = Serial.readBytesUntil(0x10, bytes, MAXBYTES);
+  
+  // Echo if we got data
+  if (got > 0) {
+    for(int i=0; i<got; ++i) {
+      swrite(bytes[i]);
+    }
+
     swrite(0x10);
     Serial.flush();
   }

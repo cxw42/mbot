@@ -197,10 +197,19 @@ b'FGHIJKLMNOPQRSTUVW<=>?@ABCDEF'
 
 ## Two-way comms
 
-### Test 1
+### Test 1 - echo char
 
 Read one char at a time and echo it back - works fine over USB
 with `stty -F /dev/ttyUSB0 9600 raw`.
+
+### Test 2 - echo str
+
+```
+# in terminal 1
+$ cat /dev/ttyUSB0
+Hello, world!
+Hello, world!^J^PHello, world!^J^P^PHello, world!^J^P^P^PHello, world!^J^P^P^P^PHello, world!^J^P^P^P^P^P^C
+```
 
 ## Refs
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
