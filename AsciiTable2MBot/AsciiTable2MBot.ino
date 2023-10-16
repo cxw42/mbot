@@ -19,23 +19,10 @@
   https://www.arduino.cc/en/Tutorial/BuiltInExamples/ASCIITable
 */
 
-// Don't use the system-provided serialEventRun()
-void serialEventRun() {}
-
 // define for USB; comment out for 2.4GHz
 #define TTYUSB
 
-// first visible ASCIIcharacter '!' is number 33:
-#define FIRST_BYTE (33)
- 
-// character '~' or 126
-#define LAST_BYTE (126) 
- 
-int thisByte = FIRST_BYTE;
-// you can also write ASCII characters in single quotes.
-// for example, '!' is the same as 33, so you could also use this:
-// int thisByte = '!';
-
+// Custom serial-write routine.
 // 115200 is ~8.7us per byte.  Cut the rate to give the wireless
 // adapter time to keep up.
 
@@ -43,19 +30,6 @@ void swrite(int i)
 {
   delayMicroseconds(20);
   Serial.write(i);
-}
-
-void sprint(char *s, int base=DEC)
-{
-  while(char c = *s++) {
-    swrite(c);
-  }
-}
-
-void sprintln(char *s, int base=DEC)
-{
-  sprint(s, base);
-  swrite(0x10);
 }
 
 void setup() {
@@ -69,11 +43,11 @@ void setup() {
   Serial.begin(115200, SERIAL_8N2);
 #endif
 
-  Serial.setTimeout(2000);
   swrite('>');
   Serial.flush();
 }
 
+// Buffer
 #define MAXBYTES (64)
 char bytes[MAXBYTES];
 int readBytes = 0;
@@ -116,5 +90,4 @@ void serialEvent()
       return;
     }
   }
-
 }
