@@ -250,6 +250,11 @@ with prompts!
 
 Same issue --- newlines seem to not get consumed.
 
+### Hmm...
+
+I noticed that `readBytes` was syntax-highlighted.  I changed it to
+`bytesRead` and am no longer getting spammed.
+
 ## Refs
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
 - <http://docs.makeblock.com/diy-platform/en/electronic-modules/main-control-boards/images/mcore_Mcore.png>

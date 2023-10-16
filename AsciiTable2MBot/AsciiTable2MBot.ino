@@ -50,14 +50,14 @@ void setup() {
 // Buffer
 #define MAXBYTES (64)
 char bytes[MAXBYTES];
-int readBytes = 0;
+int bytesRead = 0;
 bool stringReady = false;
 
 // Print the buffer and reset it
 void PrintAndReset()
 {
     swrite('=');
-    for(int i=0; i<readBytes; ++i) {
+    for(int i=0; i<bytesRead; ++i) {
       swrite(bytes[i]);
     }
 
@@ -65,12 +65,18 @@ void PrintAndReset()
     swrite('>');
     Serial.flush();
 
-    readBytes = 0;
+    bytesRead = 0;
     stringReady = false;
+
+    // LED
+    pinMode(LED_BUILTIN, OUTPUT);
+
 }
 
 void loop() 
 {
+  digitalWrite(LED_BUILTIN, stringReady ? HIGH : LOW);
+
   if(stringReady) {
     PrintAndReset();
   }
@@ -84,8 +90,8 @@ void serialEvent()
       stringReady = true;
       return;
     }
-    bytes[readBytes++] = ch & 0x7f;
-    if(readBytes == MAXBYTES) {
+    bytes[bytesRead++] = ch & 0x7f;
+    if(bytesRead == MAXBYTES) {
       stringReady = true;
       return;
     }
