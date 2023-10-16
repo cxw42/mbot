@@ -211,6 +211,31 @@ Hello, world!
 Hello, world!^J^PHello, world!^J^P^PHello, world!^J^P^P^PHello, world!^J^P^P^P^PHello, world!^J^P^P^P^P^P^C
 ```
 
+### Try adding a prompt
+
+```
+~/proj/mbot$ stty -F /dev/ttyUSB0 9600 raw
+~/proj/mbot$ cat /dev/ttyUSB0
+>=>
+>==>^J>
+>===>^J>^J>
+>====>^J>^J>^J>
+>=====>^J>^J>^J>^J>
+>======>^J>^J>^J>^J>^J>
+>=======>^J>^J>^J>^J>^J>^J>
+>========>^J>^J>^J>^J>^J>^J>^J>
+>=========>^J>^J>^J>^J>^J>^J>^J>^J>
+>==========>^J>^J>^J>^J>^J>^J>^J>^J>^J>
+>===========>^J>^J>^J>^J>^J>^J>^J>^J>^J>^J>
+>============>^J>^J>^J>^J>^J>^J>^J>^J>^J>^J>^J>
+>=============>^J>^J>^J>^J>^J>^J>^J>^J>^J>^J>^J>^J>
+>==============>^J>^J>^J>^J>^J>^J>^J>^J>^J>^J>^J>^J>^J>
+>^C
+```
+
+??!!
+
+
 ## Refs
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
 - <http://docs.makeblock.com/diy-platform/en/electronic-modules/main-control-boards/images/mcore_Mcore.png>

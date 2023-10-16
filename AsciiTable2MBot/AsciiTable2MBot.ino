@@ -71,15 +71,19 @@ void sprintln(char *s, int base=DEC)
 void loop() {
   char bytes[MAXBYTES];
 
-  int got = Serial.readBytesUntil(0x10, bytes, MAXBYTES);
+  swrite('>');
+  Serial.flush();
+
+  int got = Serial.readBytesUntil('\n', bytes, MAXBYTES);
   
   // Echo if we got data
   if (got > 0) {
+    swrite('=');
     for(int i=0; i<got; ++i) {
       swrite(bytes[i]);
     }
 
-    swrite(0x10);
+    swrite('\n');
     Serial.flush();
   }
   return; // XXX
