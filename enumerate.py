@@ -60,7 +60,7 @@ try:
             print("Write the data")
             # for i in range(10):
             #     h.write(bytes([0, 4, 35, 35] + [0x0d] + [0x0a]))
-            h.write(bytes([7]) + "Hello\n".encode('utf-8'))
+            h.write(bytes([6]) + "Hello\n".encode('utf-8'))
 
             # wait
             time.sleep(0.05)
