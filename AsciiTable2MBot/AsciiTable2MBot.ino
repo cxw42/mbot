@@ -20,7 +20,7 @@
 */
 
 // define for USB; comment out for 2.4GHz
-//#define TTYUSB
+#define TTYUSB
 
 void setup() {
 #ifdef TTYUSB
@@ -68,6 +68,17 @@ void sprintln(char *s, int base=DEC)
 }
 
 void loop() {
+  // Echo a byte if there is one
+  if (Serial.available() > 0) {
+    // read the incoming byte:
+    int incomingByte = Serial.read();
+    sprint("Got: ");
+    swrite(incomingByte);
+    swrite(0x10);
+    Serial.flush();
+  }
+  return; // XXX
+
 #if 0
   if(thisByte == FIRST_BYTE) {
     // prints title with ending line break
@@ -79,6 +90,7 @@ void loop() {
   // The Serial Monitor interprets all bytes as ASCII, so 33, the first number,
   // will show up as '!'
   swrite(thisByte);
+
 
 #if 0
   sprint(", dec: ");

@@ -195,6 +195,13 @@ b'FGHIJKLMNOPQRSTUVW;<=>?@ABCDE'
 b'FGHIJKLMNOPQRSTUVW<=>?@ABCDEF'
 ```
 
+## Two-way comms
+
+### Test 1
+
+Read one char at a time and echo it back - works fine over USB
+with `stty -F /dev/ttyUSB0 9600 raw`.
+
 ## Refs
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
 - <http://docs.makeblock.com/diy-platform/en/electronic-modules/main-control-boards/images/mcore_Mcore.png>
