@@ -180,6 +180,21 @@ b'opqrstuvwxyz{|}~!"vwxyz{|}~!"'
 ...
 ```
 
+### Trying back on 8N1
+
+Seems to be repeated data:
+```
+Read the data
+b'@ABCDEFGHIJKLMNOPQ6789:;<=>?@'
+b'ABCDEFGHIJKLMNOPQR6789:;<=>?@'
+b'ABCDEFGHIJKLMNOPQR9:;<=>?@ABC'
+b'DEFGHIJKLMNOPQRSTU9:;<=>?@ABC'
+b'DEFGHIJKLMNOPQRSTU:;<=>?@ABCD'
+b'EFGHIJKLMNOPQRSTUV;<=>?@ABCDE'
+b'FGHIJKLMNOPQRSTUVW;<=>?@ABCDE'
+b'FGHIJKLMNOPQRSTUVW<=>?@ABCDEF'
+```
+
 ## Refs
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
 - <http://docs.makeblock.com/diy-platform/en/electronic-modules/main-control-boards/images/mcore_Mcore.png>

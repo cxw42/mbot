@@ -30,7 +30,7 @@ void setup() {
     ; // wait for serial port to connect. Needed for native USB port only
   }
 #else
-  Serial.begin(115200, SERIAL_8N2);
+  Serial.begin(115200, SERIAL_8N1);
 #endif
 }
 
