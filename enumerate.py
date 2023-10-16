@@ -31,22 +31,18 @@ device = find_device()
 def read_and_print(h):
     # read back the answer
     print("Read the data")
-    try:
-        while True:
-            d = h.read(65)
-            if d:
-                count = d[0]
-                if not count:
-                    # Empty packet
-                    continue
-                print(d[1 : count + 1])
+    d = h.read(65)
+    if d:
+        count = d[0]
+        if not count:
+            # Empty packet
+            return
+        print(d[1 : count + 1])
 
-                # Print extra bytes we got if there are any nonzeros.
-                left = d[count + 1 :]
-                if any(b for b in left):
-                    print("Left:", left)
-    except KeyboardInterrupt:
-        return
+        # Print extra bytes we got if there are any nonzeros.
+        left = d[count + 1 :]
+        if any(b for b in left):
+            print("Left:", left)
 
 
 try:
@@ -61,17 +57,20 @@ try:
     while True:
         try:
             # write some data to the device
-            # print("Write the data")
+            print("Write the data")
             # for i in range(10):
             #     h.write(bytes([0, 4, 35, 35] + [0x0d] + [0x0a]))
-            h.write(bytes([0x0D, 0x0A]))
+            h.write(bytes([2, 0x0D, 0x0A]))
 
             # wait
             time.sleep(0.05)
 
             read_and_print(h)
+
+            time.sleep(0.05)
+
         except KeyboardInterrupt:
-            pass
+            break
 
     print("Closing the device")
     h.close()

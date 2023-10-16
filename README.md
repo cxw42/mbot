@@ -288,6 +288,11 @@ b'=\n>=zX\n>=\n>'
 Done
 ```
 
+### Next
+
+Works for multiple TX/RX!  No leading zero; just a count and then bytes.
+Have only tried newline so far.
+
 ## Refs
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
 - <http://docs.makeblock.com/diy-platform/en/electronic-modules/main-control-boards/images/mcore_Mcore.png>
