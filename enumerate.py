@@ -36,12 +36,14 @@ try:
     print("Product: %s" % h.get_product_string())
     print("Serial No: %s" % h.get_serial_number_string())
 
-    ## write some data to the device
+    # write some data to the device
     # print("Write the data")
-    # h.write(bytes([0, 63, 35, 35] + [0] * 61 + [0x0a]))
+    # for i in range(10):
+    #     h.write(bytes([0, 4, 35, 35] + [0x0d] + [0x0a]))
+    h.write(bytes([0x0D, 0x0A]))
 
     # wait
-    # time.sleep(0.05)
+    time.sleep(0.05)
 
     # read back the answer
     print("Read the data")

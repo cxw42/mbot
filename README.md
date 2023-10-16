@@ -270,6 +270,24 @@ Connected.
 
 !!!
 
+### Trying wirelessly
+
+```
+$ sudo ./enumerate.py
+path: b'0003:002c:00'
+vendor: 0416
+product: ffff
+
+Opening the device
+Manufacturer: MemsArt
+Product: RF UART
+Serial No: Љ
+Read the data
+b'=\n>=zX\n>=\n>'
+^CClosing the device
+Done
+```
+
 ## Refs
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
 - <http://docs.makeblock.com/diy-platform/en/electronic-modules/main-control-boards/images/mcore_Mcore.png>

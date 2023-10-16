@@ -1,26 +1,7 @@
-/*
-  ASCII table
-
-  Prints out byte values in all possible formats:
-  - as raw binary values
-  - as ASCII-encoded decimal, hex, octal, and binary values
-
-  For more on ASCII, see http://www.asciitable.com and http://en.wikipedia.org/wiki/ASCII
-
-  The circuit: No external hardware needed.
-
-  created 2006
-  by Nicholas Zambetti <http://www.zambetti.com>
-  modified 9 Apr 2012
-  by Tom Igoe
-
-  This example code is in the public domain.
-
-  https://www.arduino.cc/en/Tutorial/BuiltInExamples/ASCIITable
-*/
+// No longer ascii table!
 
 // define for USB; comment out for 2.4GHz
-#define TTYUSB
+// #define TTYUSB
 
 // Custom serial-write routine.
 // 115200 is ~8.7us per byte.  Cut the rate to give the wireless
