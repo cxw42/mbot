@@ -61,6 +61,11 @@ try:
     print("Product: %s" % h.get_product_string())
     print("Serial No: %s" % h.get_serial_number_string())
 
+    write_str(h, "Mqq")
+    time.sleep(2)
+    write_str(h, "Mmm") # stop
+    sys.exit(0)
+
     while True:
         try:
             # write some data to the device

@@ -3,6 +3,14 @@
 // define for USB; comment out for 2.4GHz
 // #define TTYUSB
 
+// Using the mbot fork at
+// <https://github.com/nbourre/Makeblock-Libraries>, installed via the
+// Library Manager
+#include <MeMCore.h>
+
+MeDCMotor MotorL(M1);
+MeDCMotor MotorR(M2);
+
 // Custom serial-write routine.
 // 115200 is ~8.7us per byte.  Cut the rate to give the wireless
 // adapter time to keep up.
@@ -26,6 +34,9 @@ void setup() {
 
   swrite('>');
   Serial.flush();
+
+  MotorL.run(0);
+  MotorR.run(0);
 }
 
 // Buffer
@@ -33,6 +44,26 @@ void setup() {
 char bytes[MAXBYTES];
 int bytesRead = 0;
 bool stringReady = false;
+
+// check the buffer for a motor command.
+// Format is `Mlr`, where `l` is left-motor speed and `r` is right-motor
+// speed.  Each is one ascii char, with `m` == 0.  So `Mmm` = stop.
+void CheckMotorCommand()
+{
+  if(bytesRead < 3) {
+    return;
+  }
+
+  if(bytes[0] != 'M') {
+    return;
+  }
+
+  int lspeed = (int)bytes[1] - 'm';
+  int rspeed = (int)bytes[2] - 'm';
+
+  MotorL.run(lspeed);
+  MotorR.run(rspeed);
+}
 
 // Print the buffer and reset it
 void PrintAndReset()
@@ -54,11 +85,12 @@ void PrintAndReset()
 
 }
 
-void loop() 
+void loop()
 {
   digitalWrite(LED_BUILTIN, stringReady ? HIGH : LOW);
 
   if(stringReady) {
+    CheckMotorCommand();
     PrintAndReset();
   }
 }

@@ -333,9 +333,12 @@ b'=Hello, world!\n>'
 It is a bit wonky at first but then settles down.
 
 ## Refs
+
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
 - <http://docs.makeblock.com/diy-platform/en/electronic-modules/main-control-boards/images/mcore_Mcore.png>
 - <https://cdn.sparkfun.com/datasheets/Dev/Arduino/Other/CH340DS1.PDF>
 - <https://trezor.github.io/cython-hidapi/examples.html#finding-devices>
 - <https://docs.rs/hidapi/latest/hidapi/struct.HidApi.html>
 - <http://docs.makeblock.com/diy-platform/en/electronic-modules/communicators/2-4g-wireless-serial.html>
+- Default mbot firmware:
+  <https://github.com/Makeblock-official/Makeblock-Libraries/blob/master/examples/Firmware_For_mBlock/mbot_factory_firmware/mbot_factory_firmware.ino>
