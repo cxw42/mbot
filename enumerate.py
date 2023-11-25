@@ -65,11 +65,11 @@ try:
     print("Product: %s" % h.get_product_string())
     print("Serial No: %s" % h.get_serial_number_string())
 
-    write_str(h, "Yowza")
-    read_and_print(h)
+    write_str(h, "\n")
+    # read_and_print(h)
     time.sleep(2)
-    write_str(h, "Yowza") # stop
-    read_and_print(h)
+    write_str(h, "\n") # stop
+    #read_and_print(h)
     sys.exit(0)
 
     while True:
