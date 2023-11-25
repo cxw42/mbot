@@ -1,7 +1,7 @@
 // No longer ascii table!
 
 // define for USB; comment out for 2.4GHz
-#define TTYUSB
+// #define TTYUSB
 
 // Using the mbot fork at
 // <https://github.com/nbourre/Makeblock-Libraries>, installed via the

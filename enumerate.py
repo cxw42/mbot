@@ -32,10 +32,14 @@ def read_and_print(h):
     # read back the answer
     print("Read the data")
     d = h.read(65)
-    if d:
+    if not d:
+        print("<no data>")
+
+    else:
         count = d[0]
         if not count:
             # Empty packet
+            print("<Empty packet>")
             return
         print(d[1 : count + 1])
 
@@ -61,9 +65,11 @@ try:
     print("Product: %s" % h.get_product_string())
     print("Serial No: %s" % h.get_serial_number_string())
 
-    write_str(h, "Mqq")
+    write_str(h, "Yowza")
+    read_and_print(h)
     time.sleep(2)
-    write_str(h, "Mmm") # stop
+    write_str(h, "Yowza") # stop
+    read_and_print(h)
     sys.exit(0)
 
     while True:
