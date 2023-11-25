@@ -1,7 +1,7 @@
 // No longer ascii table!
 
 // define for USB; comment out for 2.4GHz
-// #define TTYUSB
+#define TTYUSB
 
 // Using the mbot fork at
 // <https://github.com/nbourre/Makeblock-Libraries>, installed via the
@@ -10,6 +10,8 @@
 
 MeDCMotor MotorL(M1);
 MeDCMotor MotorR(M2);
+
+bool buttonWasPressed = false;
 
 // Custom serial-write routine.
 // 115200 is ~8.7us per byte.  Cut the rate to give the wireless
@@ -85,6 +87,24 @@ void PrintAndReset()
 
 }
 
+bool motorRunning = false;
+
+void checkButton()
+{
+  const bool buttonIsPressed = !(analogRead(7) > 100);  // incantation from factory firmware
+  const bool shouldToggleMotor = (buttonIsPressed != buttonWasPressed);
+  buttonWasPressed = buttonIsPressed;
+
+  if(!shouldToggleMotor) {
+    return;
+  }
+
+  motorRunning = !motorRunning;
+  const int speed = motorRunning ? 100 : 0;
+  MotorL.run(-speed);
+  MotorR.run(speed);
+}
+
 void loop()
 {
   digitalWrite(LED_BUILTIN, stringReady ? HIGH : LOW);
@@ -93,6 +113,8 @@ void loop()
     CheckMotorCommand();
     PrintAndReset();
   }
+
+  checkButton();
 }
 
 void serialEvent()
