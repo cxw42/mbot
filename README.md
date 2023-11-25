@@ -332,6 +332,15 @@ b'=Hello, world!\n>'
 
 It is a bit wonky at first but then settles down.
 
+## Controlling motor via serial port
+
+```
+$ stty -F /dev/ttyUSB0 raw -hupcl
+```
+
+Without the `-hupcl`, you can't write to `/dev/ttyUSB0` unless you also have
+a `cat /dev/ttyUSB0` running in the background.
+
 ## Refs
 
 - <https://github.com/Ted-CAcert/mymbot/wiki/mBot-2.4G-Wireless-Serial>
