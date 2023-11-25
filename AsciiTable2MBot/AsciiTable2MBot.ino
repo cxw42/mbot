@@ -1,7 +1,7 @@
 // No longer ascii table!
 
 // define for USB; comment out for 2.4GHz
-// #define TTYUSB
+#define TTYUSB
 
 // Using the mbot fork at
 // <https://github.com/nbourre/Makeblock-Libraries>, installed via the
@@ -43,6 +43,8 @@ void swrite(int i)
   Serial.write(i);
 }
 
+bool ledOn = false;
+
 void setup() {
 #ifdef TTYUSB
   //Initialize serial and wait for port to open:
@@ -56,6 +58,9 @@ void setup() {
 
   swrite('>');
   Serial.flush();
+
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, LOW);
 
   MotorL.run(0);
   MotorR.run(0);
@@ -104,16 +109,16 @@ void PrintAndReset()
     bytesRead = 0;
     stringReady = false;
 
-    // LED
-    pinMode(LED_BUILTIN, OUTPUT);
-
+    // toggle LED
+    ledOn = !ledOn;
+    digitalWrite(LED_BUILTIN, ledOn ? HIGH : LOW);
 }
 
 // === main =============================================================
 
 void loop()
 {
-  digitalWrite(LED_BUILTIN, stringReady ? HIGH : LOW);
+  //digitalWrite(LED_BUILTIN, stringReady ? HIGH : LOW);
 
   if(stringReady) {
     //CheckMotorCommand();
