@@ -16,21 +16,24 @@ MeDCMotor MotorR(M2);
 bool buttonWasPressed = false;
 bool motorRunning = false;
 
-void checkButton(bool syntheticPress = false)
+void ToggleMotor() 
 {
-  const bool buttonIsPressed = syntheticPress ||
-    !(analogRead(7) > 100);  // incantation from factory firmware
+  motorRunning = !motorRunning;
+  const int mspeed = motorRunning ? 100 : 0;
+  MotorL.run(-mspeed);
+  MotorR.run(mspeed);
+}
+
+void checkButton()
+{
+  const bool buttonIsPressed = !(analogRead(7) > 100);  // incantation from factory firmware
   const bool shouldToggleMotor = buttonIsPressed && !buttonWasPressed;
   buttonWasPressed = buttonIsPressed;
 
-  if(!shouldToggleMotor) {
-    return;
+  if(shouldToggleMotor) {
+    ToggleMotor();
   }
 
-  motorRunning = !motorRunning;
-  const int speed = motorRunning ? 100 : 0;
-  MotorL.run(-speed);
-  MotorR.run(speed);
 }
 
 // Custom serial-write routine.
@@ -56,8 +59,10 @@ void setup() {
   Serial.begin(115200, SERIAL_8N2);
 #endif
 
+#if 0
   swrite('>');
   Serial.flush();
+#endif
 
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
@@ -71,7 +76,7 @@ void setup() {
 // Buffer
 #define MAXBYTES (64)
 char bytes[MAXBYTES];
-int bytesRead = 0;
+int bytesRead = 0;  // XXX this can be 0 when stringReady, if the string was "\n"
 bool stringReady = false;
 
 // check the buffer for a motor command.
@@ -97,6 +102,7 @@ void CheckMotorCommand()
 // Print the buffer and reset it
 void PrintAndReset()
 {
+#if 0
     swrite('=');
     for(int i=0; i<bytesRead; ++i) {
       swrite(bytes[i]);
@@ -105,6 +111,7 @@ void PrintAndReset()
     swrite('\n');
     swrite('>');
     Serial.flush();
+#endif
 
     bytesRead = 0;
     stringReady = false;
@@ -122,7 +129,7 @@ void loop()
 
   if(stringReady) {
     //CheckMotorCommand();
-    checkButton(bytesRead > 0); // XXX
+    ToggleMotor();
     PrintAndReset();
   } else {
     checkButton();
