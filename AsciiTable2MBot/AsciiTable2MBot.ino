@@ -92,7 +92,7 @@ bool motorRunning = false;
 void checkButton()
 {
   const bool buttonIsPressed = !(analogRead(7) > 100);  // incantation from factory firmware
-  const bool shouldToggleMotor = (buttonIsPressed != buttonWasPressed);
+  const bool shouldToggleMotor = buttonIsPressed && !buttonWasPressed;
   buttonWasPressed = buttonIsPressed;
 
   if(!shouldToggleMotor) {
