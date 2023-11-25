@@ -116,11 +116,12 @@ void loop()
   digitalWrite(LED_BUILTIN, stringReady ? HIGH : LOW);
 
   if(stringReady) {
-    CheckMotorCommand();
+    //CheckMotorCommand();
+    checkButton(bytesRead > 0); // XXX
     PrintAndReset();
+  } else {
+    checkButton();
   }
-
-  checkButton();
 }
 
 void serialEvent()
